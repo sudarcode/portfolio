@@ -10,7 +10,7 @@ const { href, label } = Astro.props;
 <a
   {href}
   target="_blank"
-  class="p-2.5 rounded-full bg-bg-subtle border border-border social-link transition-colors hover:bg-border"
+  class="p-1.5 sm:p-2.5 rounded-full bg-bg-subtle border border-border social-link transition-colors hover:bg-border"
 >
   <span class="sr-only">{label}</span>
   <slot />
@@ -18,6 +18,6 @@ const { href, label } = Astro.props;
 
 <style is:global>
   .social-link svg {
-    @apply w-6 h-6;
+    @apply w-5 h-5 sm:w-6 sm:h-6;
   }
 </style>
