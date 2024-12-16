@@ -17,9 +17,6 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.1.3
     version: 5.1.3(astro@5.0.6)(tailwindcss@3.4.16)
-  '@astrojs/vercel':
-    specifier: ^8.0.1
-    version: 8.0.1(astro@5.0.6)
   '@fontsource-variable/inter':
     specifier: ^5.1.0
     version: 5.1.0
@@ -259,31 +256,6 @@ packages:
 
   /@astrojs/underscore-redirects@0.4.0:
     resolution: {integrity: sha512-Urt32++4ql0IFTTNejnRIN7LPJ6YzU9QXLcc4RXm5or1RLPnQBKVrLvmDxKx3eT72l7ZAi6W4L5E7pcbWbYDRA==}
-    dev: false
-
-  /@astrojs/vercel@8.0.1(astro@5.0.6):
-    resolution: {integrity: sha512-0TgXOlT8HpZNyLpbFuw2tAvo5Azdz/PlRg8/Oak7Skj3uivhSePR9ftt0uq93ofgzHtF7Gzs9BKcH+BsAwff9Q==}
-    peerDependencies:
-      astro: ^5.0.0
-    dependencies:
-      '@astrojs/internal-helpers': 0.4.2
-      '@vercel/analytics': 1.4.1
-      '@vercel/edge': 1.1.4
-      '@vercel/nft': 0.27.9
-      astro: 5.0.6(typescript@5.7.2)
-      esbuild: 0.24.0
-      fast-glob: 3.3.2
-    transitivePeerDependencies:
-      - '@remix-run/react'
-      - '@sveltejs/kit'
-      - encoding
-      - next
-      - react
-      - rollup
-      - supports-color
-      - svelte
-      - vue
-      - vue-router
     dev: false
 
   /@astrojs/yaml2ts@0.2.2:
@@ -1393,37 +1365,6 @@ packages:
 
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-    dev: false
-
-  /@vercel/analytics@1.4.1:
-    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==}
-    peerDependencies:
-      '@remix-run/react': ^2
-      '@sveltejs/kit': ^1 || ^2
-      next: '>= 13'
-      react: ^18 || ^19 || ^19.0.0-rc
-      svelte: '>= 4'
-      vue: ^3
-      vue-router: ^4
-    peerDependenciesMeta:
-      '@remix-run/react':
-        optional: true
-      '@sveltejs/kit':
-        optional: true
-      next:
-        optional: true
-      react:
-        optional: true
-      svelte:
-        optional: true
-      vue:
-        optional: true
-      vue-router:
-        optional: true
-    dev: false
-
-  /@vercel/edge@1.1.4:
-    resolution: {integrity: sha512-mCe+KKmYphgWaO6NSxzkxskv4eZOuuRDqBQX/LhOizj5o1+4u/fwjN+WZDpAyVH8WU8+7EueijoT6wbTKlauOA==}
     dev: false
 
   /@vercel/nft@0.27.9:
