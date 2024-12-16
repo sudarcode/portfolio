@@ -4,17 +4,18 @@ import { getCollection } from "astro:content";
 import Prose from "~/components/Prose.astro";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import { components } from "~/components/mdx";
+import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
   return (await getCollection("legal")).map((article) => ({
-    params: { slug: article.slug },
+    params: { slug: article.id },
     props: { article },
   }));
 }) satisfies GetStaticPaths;
 
 const { article } = Astro.props;
 const { data } = article;
-const { Content } = await article.render();
+const { Content } = await render(article);
 ---
 
 <BaseLayout title={data.title} description={data.description}>

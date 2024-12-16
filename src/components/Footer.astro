@@ -20,11 +20,16 @@ const links: Array<{ href: string; text: string }> = [
 ];
 ---
 
-<div class="bg-gradient-to-t from-bg to-bg/0 sticky bottom-0 h-24 z-10 pointer-events-none"></div>
+<div
+  class="bg-gradient-to-t from-bg to-bg/0 sticky bottom-0 h-24 z-10 pointer-events-none"
+>
+</div>
 <footer
   class="mt-auto mx-auto px-4 max-w-xl py-4 w-full border-t border-border text-sm"
 >
-  <div class="flex max-sm:flex-col items-start sm:items-center justify-between gap-4">
+  <div
+    class="flex max-sm:flex-col items-start sm:items-center justify-between gap-4"
+  >
     <span>&copy; <span id="footer-year"></span> - Florian Lefebvre</span>
     <div>
       Made with <TechPill id="astro" /> and <TechPill id="tailwind" />
@@ -64,12 +69,9 @@ const links: Array<{ href: string; text: string }> = [
   </div>
 
   <script is:inline>
-    const handleDate = () => {
+    (() => {
       document.getElementById("footer-year").innerText =
         new Date().getFullYear();
-    };
-
-    handleDate();
-    document.addEventListener("astro:after-swap", () => handleDate());
+    })();
   </script>
 </footer>

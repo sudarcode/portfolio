@@ -1,3 +1,4 @@
+import { glob } from "astro/loaders";
 import { defineCollection, z, type ImageFunction } from "astro:content";
 
 const projectSchema = (image: ImageFunction) =>
@@ -13,17 +14,17 @@ const projectSchema = (image: ImageFunction) =>
   });
 
 const experiences = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/experiences" }),
   schema: ({ image }) => projectSchema(image),
 });
 
 const legal = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/legal" }),
   schema: z.object({ title: z.string(), description: z.string() }),
 });
 
 const posts = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/posts" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -36,12 +37,12 @@ const posts = defineCollection({
 });
 
 const projects = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/projects" }),
   schema: ({ image }) => projectSchema(image),
 });
 
 const techs = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/techs" }),
   schema: z.object({
     name: z.string(),
     href: z.string().url(),
@@ -49,19 +50,19 @@ const techs = defineCollection({
 });
 
 const testimonials = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/testimonials" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       subtitle: z.string(),
       image: image(),
       href: z.string().url(),
-      draft: z.boolean().optional().default(false)
+      draft: z.boolean().optional().default(false),
     }),
 });
 
 const texts = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/texts" }),
   schema: z.object({}),
 });
 
@@ -72,5 +73,5 @@ export const collections = {
   projects,
   techs,
   testimonials,
-  texts
+  texts,
 };

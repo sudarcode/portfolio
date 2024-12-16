@@ -1,14 +1,17 @@
 ---
-import { getEntry, type CollectionEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 interface Props {
-  id: CollectionEntry<"techs">["slug"];
+  id: string;
 }
 
 const { id } = Astro.props;
 
 const tech = await getEntry("techs", id);
+if (!tech) {
+  throw new Error(`Can't find tech for id "${id}"`)
+}
 const { name, href } = tech.data;
-const { Content } = await tech.render();
+const { Content } = await render(tech);
 ---
 
 <a

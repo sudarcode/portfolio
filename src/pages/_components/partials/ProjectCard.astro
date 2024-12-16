@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 import { components } from "~/components/mdx";
 interface Props {
   project: CollectionEntry<"experiences" | "projects">;
@@ -8,7 +9,7 @@ interface Props {
 
 const { project } = Astro.props;
 const { data } = project;
-const { Content } = await project.render();
+const { Content } = await render(project);
 ---
 
 <div class="">

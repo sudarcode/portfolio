@@ -40,7 +40,7 @@ import SocialLinks from "./partials/SocialLinks.astro";
     </div>
   </div>
   <script is:inline>
-    window.__handleTime ??= () => {
+    (() => {
       const updateTime = () => {
         const today = new Date();
         const formatter = new Intl.DateTimeFormat("en-US", {
@@ -61,15 +61,6 @@ import SocialLinks from "./partials/SocialLinks.astro";
       return setInterval(() => {
         updateTime();
       }, 1000);
-    };
-
-    window.__handleTimeId = window.__handleTime();
-    document.addEventListener("astro:after-swap", () => {
-      if (window.__handleTimeId) {
-        clearInterval(window.__handleTimeId);
-      }
-
-      window.__handleTimeId = undefined;
-    });
+    })();
   </script>
 </Section>

@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Section from "~/components/Section";
 import { components } from "~/components/mdx";
 
@@ -9,7 +9,7 @@ const testimonials = await Promise.all(
     .reverse()
     .map(async (e) => ({
       ...e,
-      ...(await e.render()),
+      ...(await render(e)),
     }))
 );
 
