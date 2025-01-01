@@ -1,21 +1,19 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z, type ImageFunction } from "astro:content";
-
-const projectSchema = (image: ImageFunction) =>
-  z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.string(),
-    image: z.object({ src: image(), alt: z.string() }),
-    links: z
-      .array(z.object({ href: z.string(), text: z.string() }))
-      .optional()
-      .default([]),
-  });
+import { defineCollection, z } from "astro:content";
 
 const experiences = defineCollection({
   loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/experiences" }),
-  schema: ({ image }) => projectSchema(image),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      date: z.string(),
+      image: z.object({ src: image(), alt: z.string() }),
+      links: z
+        .array(z.object({ href: z.string(), text: z.string() }))
+        .optional()
+        .default([]),
+    }),
 });
 
 const legal = defineCollection({
@@ -34,11 +32,6 @@ const posts = defineCollection({
       category: z.string(),
       tags: z.array(z.string()),
     }),
-});
-
-const projects = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/projects" }),
-  schema: ({ image }) => projectSchema(image),
 });
 
 const techs = defineCollection({
@@ -70,7 +63,6 @@ export const collections = {
   experiences,
   legal,
   posts,
-  projects,
   techs,
   testimonials,
   texts,
