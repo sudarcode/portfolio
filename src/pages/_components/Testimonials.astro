@@ -6,7 +6,7 @@ import { components } from "~/components/mdx";
 
 const testimonials = await Promise.all(
   (await getCollection("testimonials", ({ data }) => !data.draft))
-    .reverse()
+    .sort((a, b) => b.id.localeCompare(a.id))
     .map(async (e) => ({
       ...e,
       ...(await render(e)),
