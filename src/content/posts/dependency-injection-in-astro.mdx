@@ -1,6 +1,6 @@
 ---
 title: "Dependency injection in Astro"
-description: "Dependency injection is a poweful programming technique. Learn how to apply a simplified version to Astro."
+description: "Dependency injection is a powerful programming technique. Learn how to apply a simplified version to Astro."
 date: 2025-05-09
 cover:
   src: ~/assets/posts/hydration-in-astro/cover.jpg
@@ -28,7 +28,7 @@ Locals hold data for the current request, so it can be used as a main bus.
 
 ## Example usage
 
-> This is the approach I like to take on my projects but this is not the only way. Adapt it to your needs and specific usecases.
+> This is the approach I like to take on my projects but this is not the only way. Adapt it to your needs and specific use cases.
 
 For our example, we'll implement a `getUsersByActivity()` function that retrieves users based on their `active` status and returns them.
 
@@ -104,7 +104,7 @@ export function createDatabaseUsersRepository({
 }
 ```
 
-Notice how this implentation of the `UsersRepository` itself has a dependency.
+Notice how this implementation of the `UsersRepository` itself has a dependency.
 
 ### 3. Write your function
 
@@ -183,7 +183,7 @@ const activeUsers = await getUsersByActivity(Astro.locals, { active: true });
 
 ---
 
-Dependency injection usually involves more than that for more complex usecases, but this article is only meant to be used as a starting point!
+Dependency injection usually involves more than that for more complex use cases, but this article is only meant to be used as a starting point!
 
 ---
 
