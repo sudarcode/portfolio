@@ -1,5 +1,5 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 
 const experiences = defineCollection({
   loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/experiences" }),
@@ -9,10 +9,7 @@ const experiences = defineCollection({
       description: z.string(),
       date: z.string(),
       image: z.object({ src: image(), alt: z.string() }),
-      links: z
-        .array(z.object({ href: z.string(), text: z.string() }))
-        .optional()
-        .default([]),
+      url: z.string().url().optional(),
     }),
 });
 
@@ -54,9 +51,19 @@ const testimonials = defineCollection({
     }),
 });
 
-const texts = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/texts" }),
-  schema: z.object({}),
+const results = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.mdx", base: "./src/content/results" }),
+  schema: z.object({
+    title: z.string(),
+    image: reference("results-images"),
+  }),
+});
+
+const resultsImages = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.mdx",
+    base: "./src/content/results-images",
+  }),
 });
 
 export const collections = {
@@ -65,5 +72,6 @@ export const collections = {
   posts,
   techs,
   testimonials,
-  texts,
+  results,
+  "results-images": resultsImages,
 };

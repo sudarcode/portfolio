@@ -1,0 +1,54 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  article: CollectionEntry<"posts">;
+  preloadImage?: boolean;
+}
+
+const { article, preloadImage = false } = Astro.props;
+---
+
+<div
+  class="rounded-2xl relative bg-bg-subtle border border-border p-2 flex flex-col group"
+>
+  <div
+    class="relative rounded-[0.5rem] border border-border aspect-[2/1] overflow-hidden"
+  >
+    <Image
+      src={article.data.cover.src}
+      alt={article.data.cover.alt}
+      quality="max"
+      width={700}
+      loading={preloadImage ? "eager" : "lazy"}
+      class="object-cover object-center size-full group-hover:scale-[1.025] transition-transform will-change-transform duration-500 ease-out"
+    />
+  </div>
+  <div class="px-1 pt-2 flex flex-col gap-4 flex-1">
+    <div class="flex gap-2">
+      <div class="w-full">
+        <div class="flex items-center justify-between gap-2">
+          <a
+            href={`/blog/${article.id}`}
+            class="text-primary-contrast underline font-bold text-lg"
+          >
+            {article.data.title}
+            <span class="absolute inset-0"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="text-text">{article.data.description}</p>
+    <time
+      class="leading-5 text-sm mt-auto"
+      datetime={article.data.date.toISOString()}
+    >
+      Published on {
+        new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(
+          article.data.date
+        )
+      }
+    </time>
+  </div>
+</div>

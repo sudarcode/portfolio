@@ -2,65 +2,73 @@
 import { Image } from "astro:assets";
 import image from "~/assets/profile-picture.png";
 import Section from "~/components/Section";
-import AvailabilityIndicator from "~/pages/_components/partials/AvailabilityIndicator.astro";
+import { getCollection } from "astro:content";
 import SocialLinks from "./partials/SocialLinks.astro";
+import ProjectCard from "./partials/ProjectCard.astro";
+
+const featured = (await getCollection("experiences")).sort((a, b) =>
+  b.id.localeCompare(a.id)
+)[0];
 ---
 
-<Section class="pt-0 sm:pt-8">
-  <div class="flex max-sm:flex-col gap-4">
+<Section
+  class="pt-0 sm:pt-8 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-4 items-center"
+>
+  <div class="flex flex-col gap-6 max-w-md">
     <Image
       src={image}
       alt=""
-      class="h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-bg-subtle border border-border shrink-0"
+      class="size-24 md:size-16 rounded-full bg-bg-subtle border border-border shrink-0"
       loading="eager"
       width={128}
     />
     <div>
-      <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-semibold text-text">Florian Lefebvre</h1>
-        <AvailabilityIndicator />
-      </div>
-      <div class="mt-2 space-y-3 sm:space-y-2">
-        <p>Fullstack developer. Freelancer. Astro core maintainer & TSC member.</p>
-        <p>
-          Open-Source lover. French. Two-time winner of the Astro Community
-          Award.
-        </p>
-        <p>
-          <span
-            id="hero-time"
-            class="bg-bg-subtle border border-border px-1 py-0.5 tabular-nums select-none"
-            >00:00:00</span
-          > Central European Time.
-        </p>
-      </div>
-      <div class="mt-4">
-        <SocialLinks />
-      </div>
+      <h2 class="text-primary-contrast">Florian Lefebvre</h2>
+      <h1 class="text-3xl/7 font-bold text-text text-balance">
+        Astro expert & fullstack developer
+      </h1>
     </div>
+    <p>
+      Fullstack developer. Freelancer. Astro core maintainer & TSC member.
+      Open-Source lover. French. Two-time winner of the Astro Community Award.
+    </p>
+    <div class="flex items-center gap-1.5 md:order-last">
+      <span
+      class="bg-bg-subtle rounded-full border border-border px-1.5 tabular-nums select-none text-text inline-flex gap-1 items-center"
+      >
+        <span class="size-2 inline-block rounded-full bg-red-500"></span>
+        <span id="hero-time">00:00:00</span>
+      </span>
+      <span>CET</span>
+    </div>
+    <SocialLinks />
   </div>
-  <script is:inline>
-    (() => {
-      const updateTime = () => {
-        const today = new Date();
-        const formatter = new Intl.DateTimeFormat("en-US", {
-          timeZone: "CET",
-          hour12: false, // 24-hour format
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric",
-        });
-
-        // Format the date using the formatter
-        const timeInTimeZone = formatter.format(today);
-
-        document.getElementById("hero-time").innerText = timeInTimeZone;
-      };
-
-      updateTime();
-      return setInterval(() => {
-        updateTime();
-      }, 1000);
-    })();
-  </script>
+  <div>
+    <h3 class="px-2 text-sm mb-1">Featured project</h3>
+    <ProjectCard project={featured} loading="eager" />
+  </div>
 </Section>
+<script is:inline>
+  (() => {
+    const updateTime = () => {
+      const today = new Date();
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "CET",
+        hour12: false, // 24-hour format
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      });
+
+      // Format the date using the formatter
+      const timeInTimeZone = formatter.format(today);
+
+      document.getElementById("hero-time").innerText = timeInTimeZone;
+    };
+
+    updateTime();
+    return setInterval(() => {
+      updateTime();
+    }, 1000);
+  })();
+</script>

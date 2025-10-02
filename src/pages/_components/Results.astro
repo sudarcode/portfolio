@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import Section from "~/components/Section";
+import ResultCard from "./partials/ResultCard.astro";
+
+const id = "results";
+
+const results = (await getCollection("results")).sort((a, b) =>
+  b.id.localeCompare(a.id)
+);
+---
+
+<Section {id}>
+  <Section.Title {id}>Results</Section.Title>
+  <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+    {results.map((result) => <ResultCard {result} />)}
+  </div>
+</Section>
