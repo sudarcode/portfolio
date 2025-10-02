@@ -23,9 +23,12 @@ const { Content } = await render(project);
       src={data.image.src}
       alt={data.image.alt}
       quality="max"
-      width={700}
+      width={800}
+      height={400}
       {loading}
       decoding={loading === "eager" ? "sync" : "async"}
+      fetchpriority={loading === "eager" ? "high" : undefined}
+      layout="constrained"
       class="object-cover object-center size-full group-hover:scale-[1.025] transition-transform will-change-transform duration-500 ease-out"
     />
   </div>
