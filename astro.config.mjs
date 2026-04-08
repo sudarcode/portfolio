@@ -9,7 +9,7 @@ import expressiveCode from "astro-expressive-code";
 
 export default defineConfig({
   site: "https://florian-lefebvre.dev",
-  output: "static",
+  output: "server",
   adapter: cloudflare(),
   integrations: [
     tailwind(),
