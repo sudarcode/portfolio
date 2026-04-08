@@ -10,7 +10,7 @@ import expressiveCode from "astro-expressive-code";
 export default defineConfig({
   site: "https://florian-lefebvre.dev",
   output: "static",
-  adapter: netlify(),
+  adapter: cloudflare(),
   integrations: [
     tailwind(),
     expressiveCode({
