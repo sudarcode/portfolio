@@ -52,7 +52,7 @@ const featured = (await getCollection("experiences")).sort((a, b) =>
   (() => {
     const updateTime = () => {
       const today = new Date();
-      const formatter = new Intl.DateTimeFormat("en-US", {
+      const formatter = new Intl.DateTimeFormat("id-ID", {
         timeZone: "CET",
         hour12: false, // 24-hour format
         hour: "numeric",
